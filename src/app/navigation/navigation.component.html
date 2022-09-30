@@ -1,0 +1,10 @@
+<button class="material-symbols-outlined navMobile" (click)="openMenu()">
+  menu
+</button>
+
+  <router-outlet class="nav" *ngIf="menuOpen">
+  <a routerLink="storage">magazyn</a>
+  <a routerLink="reception">przyjecie</a>
+  <a routerLink="release">wydanie</a>
+  <a routerLink="document">dokumenty</a>
+  </router-outlet>

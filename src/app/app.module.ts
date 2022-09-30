@@ -3,10 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { StorageComponent } from './storage/storage.component';
+import { DocumentsComponent } from './documents/documents.component';
+import { ReceptionStorageComponent } from './reception-storage/reception-storage.component';
+import { ReleaseStorageComponent } from './release-storage/release-storage.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavigationComponent,
+    StorageComponent,
+    DocumentsComponent,
+    ReceptionStorageComponent,
+    ReleaseStorageComponent
   ],
   imports: [
     BrowserModule,
