@@ -9,11 +9,11 @@
 
 <div class="backdrop" *ngIf="menuOpen">
   <div class="form">
-      <ul>
+      <ol>
         <li *ngFor="let place of places">
-          {{place}}
+          <input id="hero-name" [(ngModel)]="place.name" placeholder="Hero name" />
         </li>
-      </ul>
+      </ol>
     <button class="material-symbols-outlined" (click)="openMenu()">
       close
     </button>

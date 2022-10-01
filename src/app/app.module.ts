@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { StorageComponent } from './storage/storage.component';
 import { DocumentsComponent } from './documents/documents.component';
-import { ReceptionStorageComponent } from './reception-storage/reception-storage.component';
-import { ReleaseStorageComponent } from './release-storage/release-storage.component';
 import { CompanyNameComponent } from './company-name/company-name.component';
+import { FormsModule } from '@angular/forms';
+import { AddOrderComponent } from './add-order/add-order.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +16,13 @@ import { CompanyNameComponent } from './company-name/company-name.component';
     NavigationComponent,
     StorageComponent,
     DocumentsComponent,
-    ReceptionStorageComponent,
-    ReleaseStorageComponent,
-    CompanyNameComponent
+    CompanyNameComponent,
+    AddOrderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

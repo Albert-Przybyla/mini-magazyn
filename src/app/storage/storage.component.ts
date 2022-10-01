@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaceInStorageService } from '../place-in-storage.service';
+import { Place } from '../place';
 
 @Component({
   selector: 'app-storage',
@@ -8,7 +9,7 @@ import { PlaceInStorageService } from '../place-in-storage.service';
 })
 export class StorageComponent implements OnInit {
   protected menuOpen = false;
-  places: string[] = [];
+  places: Place[] = [];
 
   constructor(
     private placeInStorageService: PlaceInStorageService
@@ -20,7 +21,6 @@ export class StorageComponent implements OnInit {
 
   getPlaceInStorage(): void {
     this.placeInStorageService.getPlaceInStorage().subscribe(placeInStorage => this.places = placeInStorage);
-    console.log(this.places)
   }
 
 

@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { Client } from '../client';
+import { Person } from '../person';
 import { ClientService } from './../client.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ClientService } from './../client.service';
 })
 export class CompanyNameComponent implements OnInit {
 
-  companyName: Client | undefined;
+  companyName: Person | undefined;
 
   constructor(
     private clientService: ClientService

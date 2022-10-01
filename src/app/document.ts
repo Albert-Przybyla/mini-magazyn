@@ -1,6 +1,6 @@
 import {type} from './type';
 import {Storage} from './storage';
-import { Client } from './client';
+import { Person } from './person';
 
 export interface document {
   number: string;
@@ -9,5 +9,5 @@ export interface document {
   products: Storage[];
   netPrice: number;
   grossPrice: number;
-  client: Client[];
+  client: Person[];
 }

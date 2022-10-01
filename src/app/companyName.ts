@@ -1,6 +1,6 @@
-import { Client } from './client';
+import { Person } from './person';
 
-export const COMPANYNAME: Client[] = [
+export const COMPANYNAME: Person[] = [
   {id: 0,
   name: "Nazwa Firmy",
   nip: 7777777777,

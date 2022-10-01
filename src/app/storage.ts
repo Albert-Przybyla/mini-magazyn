@@ -1,3 +1,4 @@
+import { Place } from "./place";
 
 export interface Storage {
   id: number;
@@ -9,5 +10,5 @@ export interface Storage {
   vat: number;
   quantity: number;
   profit: number;
-  position: string;
+  position: Place;
 }

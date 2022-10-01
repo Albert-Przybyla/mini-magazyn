@@ -1,0 +1,15 @@
+li{
+  margin-top: 15px;
+}
+
+li input {
+  margin-left: 15px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--color-text);
+  color: var(--color-text);
+}
+
+input:focus{
+  outline: none;
+}

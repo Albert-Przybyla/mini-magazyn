@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReleaseStorageComponent } from './release-storage.component';
+import { AddOrderComponent } from './add-order.component';
 
-describe('ReleaseStorageComponent', () => {
-  let component: ReleaseStorageComponent;
-  let fixture: ComponentFixture<ReleaseStorageComponent>;
+describe('AddOrderComponent', () => {
+  let component: AddOrderComponent;
+  let fixture: ComponentFixture<AddOrderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReleaseStorageComponent ]
+      declarations: [ AddOrderComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ReleaseStorageComponent);
+    fixture = TestBed.createComponent(AddOrderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

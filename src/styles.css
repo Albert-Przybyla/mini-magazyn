@@ -107,6 +107,7 @@ body{
 }
 
 .form {
+  position: relative;
   background-color: var(--color-background);
   width: 50%;
   height: 50%;
