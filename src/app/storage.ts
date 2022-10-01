@@ -1,3 +1,4 @@
+
 export interface Storage {
   id: number;
   name: string;
@@ -8,4 +9,5 @@ export interface Storage {
   vat: number;
   quantity: number;
   profit: number;
+  position: string;
 }

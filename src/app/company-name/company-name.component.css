@@ -1,0 +1,19 @@
+header{
+  width: 80vw;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  display: flex;
+  color: var(--color-heading);
+
+}
+
+
+
+@media (min-width: 1024px){
+  header{
+    width: 100vw;
+  }
+}

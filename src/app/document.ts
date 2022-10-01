@@ -9,5 +9,5 @@ export interface document {
   products: Storage[];
   netPrice: number;
   grossPrice: number;
-  client: Client;
+  client: Client[];
 }

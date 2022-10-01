@@ -8,6 +8,7 @@ import { StorageComponent } from './storage/storage.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { ReceptionStorageComponent } from './reception-storage/reception-storage.component';
 import { ReleaseStorageComponent } from './release-storage/release-storage.component';
+import { CompanyNameComponent } from './company-name/company-name.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ReleaseStorageComponent } from './release-storage/release-storage.compo
     StorageComponent,
     DocumentsComponent,
     ReceptionStorageComponent,
-    ReleaseStorageComponent
+    ReleaseStorageComponent,
+    CompanyNameComponent
   ],
   imports: [
     BrowserModule,

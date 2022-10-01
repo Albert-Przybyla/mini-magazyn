@@ -1,1 +1,21 @@
-<p>storage works!</p>
+<section class="menu">
+    <div class="add" (click)="openMenu()">
+      dodaj lokalizacje
+      <span class="material-symbols-outlined">
+        add_location_alt
+      </span>
+    </div>
+</section>
+
+<div class="backdrop" *ngIf="menuOpen">
+  <div class="form">
+      <ul>
+        <li *ngFor="let place of places">
+          {{place}}
+        </li>
+      </ul>
+    <button class="material-symbols-outlined" (click)="openMenu()">
+      close
+    </button>
+  </div>
+</div>
