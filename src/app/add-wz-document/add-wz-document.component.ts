@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
+
 import { Storage } from '../storage';
 import { StorageService } from '../storage.service';
 
@@ -8,6 +9,7 @@ import { document } from '../document';
 import { type } from '../type';
 
 import { Person } from '../person';
+
 
 
 
@@ -21,6 +23,8 @@ export class AddWzDocumentComponent implements OnInit {
   chosenType = type.WZ;
 
   resultsShow = false;
+
+  chosenItems: Storage[] = []
 
   searchItem = '';
 
@@ -70,7 +74,7 @@ export class AddWzDocumentComponent implements OnInit {
     }
 
     genDocumentNumber(): string{
-      const number:string = this.chosenType+'/'+this.getCurrentData();
+      const number:string = 'WZ/'+this.getCurrentData();
       return number;
     }
 
@@ -80,6 +84,10 @@ export class AddWzDocumentComponent implements OnInit {
       this.resultsShow = !this.resultsShow;
       this.searchItem = name;
 
+    }
+
+    newDocument(person: Person) {
+      console.log(this.modelDocument)
     }
 
 }

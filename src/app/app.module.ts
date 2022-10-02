@@ -12,6 +12,8 @@ import { AddOrderComponent } from './add-order/add-order.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AddWzDocumentComponent } from './add-wz-document/add-wz-document.component';
 import { AddPzDocumentComponent } from './add-pz-document/add-pz-document.component';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { AddPzDocumentComponent } from './add-pz-document/add-pz-document.compon
     AppRoutingModule,
     FormsModule,
     Ng2SearchPipeModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
