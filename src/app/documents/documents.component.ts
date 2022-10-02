@@ -1,7 +1,7 @@
 import { documentService } from './../document.service';
 import { Component, OnInit } from '@angular/core';
 import { document } from '../document';
-import { jsPDF } from 'jspdf'
+// import { jsPDF } from 'jspdf'
 
 @Component({
   selector: 'app-documents',
@@ -25,17 +25,17 @@ export class DocumentsComponent implements OnInit {
   }
 
   generatePdf(document: document):void{
-    const doc = new jsPDF()
-    doc.html(
-      "<center><h1>Faktura numer "+document.number+"<h1><center>", {
-        callback: function(doc) {
-          doc.save("output.pdf");
-        },
-        x: 10,
-        y: 10
-      });
-    doc.save(document.number +".pdf");
-    console.log(doc);
+    // const doc = new jsPDF()
+    // doc.html(
+    //   "<center><h1>Faktura numer "+document.number+"<h1><center>", {
+    //     callback: function(doc) {
+    //       doc.save("output.pdf");
+    //     },
+    //     x: 10,
+    //     y: 10
+    //   });
+    // doc.save(document.number +".pdf");
+    // console.log(doc);
   }
 
 }

@@ -100,9 +100,10 @@
 
       newDocument() {
         this.documentService.addDocument(this.modelDocument)
+        console.log(this.newItems)
         for(let i = 0; i < this.newItems.length; i++){
+          console.log(i)
           this.storageService.changeQuantity(this.newItems[i]);
-          console.log(this.newItems[i])
         }
       }
 
@@ -124,9 +125,13 @@
         if(0<this.quantity){
           if(this.inStorage){
             this.items.find(i => i.id === chosenItem.id)!.quantity += this.quantity;
+          }else{
+            chosenItem.name = this.searchItem;
           }
         chosenItem.quantity = this.quantity;
-        this.chosenItems.push(chosenItem);
+        console.log(chosenItem)
+        this.chosenItems.push({...chosenItem});
+        console.log(this.chosenItems)
         this.searchItem = '';
         this.inStorage = false;
         }

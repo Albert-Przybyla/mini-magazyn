@@ -17,7 +17,9 @@ export class StorageService {
 }
 
   changeQuantity(newItem: Storage){
-    if(storages.find(i =>i.id === newItem.id)!){
+    console.log("dasdas");
+    console.log(storages.find(i =>i.id === newItem.id));
+    if(storages.find(i =>i.id === newItem.id)){
     storages.find(i =>i.id === newItem.id)!.quantity = newItem.quantity
     }else{
       storages.push(newItem);
