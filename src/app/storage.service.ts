@@ -13,7 +13,9 @@ export class StorageService {
 
   getStorage(): Observable<Storage[]> {
     const Storages = of(storages);
+    console.log("lalal")
     return Storages;
+
 }
 
 }

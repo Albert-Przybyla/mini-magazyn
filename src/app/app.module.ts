@@ -13,6 +13,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AddWzDocumentComponent } from './add-wz-document/add-wz-document.component';
 import { AddPzDocumentComponent } from './add-pz-document/add-pz-document.component';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataDocumentService } from './in-memory-data-document.service';
 
 
 @NgModule({
@@ -32,6 +35,10 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     Ng2SearchPipeModule,
     CommonModule,
+    HttpClientModule,
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataDocumentService, { dataEncapsulation: false }
+    // )
   ],
   providers: [],
   bootstrap: [AppComponent]

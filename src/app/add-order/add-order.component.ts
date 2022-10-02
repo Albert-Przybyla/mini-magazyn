@@ -21,52 +21,10 @@ export class AddOrderComponent implements OnInit {
   protected types: type[] = [type.PZ, type.WZ];
   protected chosenType: type = type.PZ;
 
-
-//
-
-  searchItem: string = "";
-
-  // tablice do wyszukiwania
-
-  items: Storage[] = [];
-
-  getStorage(): void {
-    this.storageService.getStorage().subscribe(Storage => this.items = Storage);
-  }
-
-
-  // dane do uzupełnienia //////
-
-
-  protected person: Person = {
-    id: 1,
-    name: '',
-    nip: '',
-    adressCity: '',
-    adressCityCode: '',
-    adressStreet: '',
-    adressNumber: '',
-  }
-
-  protected storageItem :Storage[] = [];
-
-  protected document :document = {
-    number: '',
-    type: this.chosenType,
-    date: '',
-    products: this.storageItem,
-    netPrice: 0,
-    grossPrice: 0,
-    client: this.person
-  }
-  // //////////////////////
-
-
   constructor(
     private storageService: StorageService
   ) { }
 
   ngOnInit(): void {
-    this.getStorage()
   }
 }

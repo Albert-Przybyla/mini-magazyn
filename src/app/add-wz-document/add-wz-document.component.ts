@@ -1,3 +1,5 @@
+import { documents } from './../documents';
+import { documentService } from './../document.service';
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
@@ -24,6 +26,18 @@ export class AddWzDocumentComponent implements OnInit {
 
   resultsShow = false;
 
+  chosenItem: Storage = {
+    id: 1,
+    name: '',
+    netPriceIn: 0,
+    vat: 0,
+    quantity: 0,
+    profit: 0,
+    position: ''
+  }
+
+  quantity: number = 0;
+
   chosenItems: Storage[] = []
 
   searchItem = '';
@@ -40,17 +54,19 @@ export class AddWzDocumentComponent implements OnInit {
 
 
   modelDocument:document = {
+    id: 0,
     number: this.genDocumentNumber(),
     type: this.chosenType,
-    date: "",
-    products: [],
+    data: this.getCurrentData(),
+    products: this.chosenItems,
     netPrice: 0,
     grossPrice: 0,
     client: this.modelPerson
   }
 
   constructor(
-    private storageService: StorageService
+    private storageService: StorageService,
+    private documentService: documentService
   ) { }
 
     // tablice do wyszukiwania
@@ -78,17 +94,31 @@ export class AddWzDocumentComponent implements OnInit {
       return number;
     }
 
+    newDocument() {
+      this.documentService.addDocument(this.modelDocument)
+      console.log(this.modelDocument)
+
+    }
+
     ////////////////////////////
 
-    showResults(name: string, item:Storage | string): void {
+    showResultsFromInput(name: string){
       this.resultsShow = !this.resultsShow;
       this.searchItem = name;
-
     }
 
-    newDocument(person: Person) {
-      console.log(this.modelDocument)
+    showResults(name: string, item:Storage): void {
+      this.resultsShow = !this.resultsShow;
+      this.searchItem = name;
+      this.chosenItem = item;
     }
+
+    addItemToDocument(chosenItem: Storage):void {
+      chosenItem.quantity = this.quantity
+      this.chosenItems.push(chosenItem)
+    }
+
+
 
 }
 

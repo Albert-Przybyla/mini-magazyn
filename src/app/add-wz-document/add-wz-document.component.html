@@ -5,7 +5,7 @@
     <option *ngFor="let item of items" [value]="item">{{item.name}}, ilosc na magazynie {{item.quantity}}</option>
   </select>
 </div> -->
-<form #documentForm="ngForm" (ngSubmit)="newDocument(modelPerson)" name="form">
+<form #documentForm="ngForm" name="form">
 <div class="form-group">
 <label for="personName">nazwa</label>
 <input type="text" name="name" class="form-control" id="personName" placeholder="nazwa" required [(ngModel)]="modelPerson.name"  #name="ngModel">
@@ -53,21 +53,30 @@
  <label for="itemName">nazwa Produktu</label>
 
  <div class="form-inline">
+
+
   <div class="form-group">
-    <input type="text" name="product" class="form-control" id="itemName" [(ngModel)]="searchItem" (click)="showResults('', '')">
+    <input type="text" name="product" class="form-control" id="itemName" [(ngModel)]="searchItem" (click)="showResultsFromInput('')">
      <ul *ngIf="searchItem && resultsShow">
       <li *ngFor="let item of items | filter:searchItem" (click)="showResults(item.name, item)">{{item.name}}</li>
     </ul>
   </div>
-  <div class="form-group">
-    <input type="text" class="form-control">
+
+
+  <div class="form-group" *ngIf="searchItem && !resultsShow">
+    <label for="ilosc">ilosc od 1 do {{chosenItem.quantity}}</label>
+    <input type="number" name="quantity" class="form-control" id="ilosc" min="1" max="{{chosenItem.quantity}}" [(ngModel)]="quantity">
   </div>
+  <button class="btn btn-success" (click)="addItemToDocument(chosenItem)"> add </button>
   </div>
+  <ul>
+    <li *ngFor="let item of chosenItems" async> {{item.name}}, ilosc {{item.quantity}}</li>
+  </ul>
 
 
-  <button type="submit" class="btn btn-success" [disabled]="!documentForm.form.valid">Submit</button>
+  <button type="submit" class="btn btn-success" (click)="newDocument()" [disabled]="!documentForm.form.valid">Submit</button>
 
-    </form>
+  </form>
 
 
     <!-- <button (click) = "add(person, 'dsdsd')" >dodaj</button> -->
