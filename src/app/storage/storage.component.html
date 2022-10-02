@@ -19,3 +19,9 @@
     </button>
   </div>
 </div>
+
+<div class="storage">
+  <ul>
+    <li *ngFor="let item of items">{{item.name}} {{item.id}} {{item.quantity}} {{item.netPriceIn + (item.netPriceIn * 23 /100)}}</li>
+  </ul>
+</div>

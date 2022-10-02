@@ -1,0 +1,35 @@
+
+<!-- <div class="form-group">
+  <label for="power">nazwa towaru</label>
+  <select class="form-control" id="power" required>
+    <option *ngFor="let item of items" [value]="item">{{item.name}}, ilosc na magazynie {{item.quantity}}</option>
+  </select>
+</div> -->
+
+<label for="personName">imie</label>
+<input type="text" name="" class="form-control" id="personName" placeholder="imie" required [(ngModel)]="modelPerson.name">
+
+<label for="nip">NIP</label>
+<input type="text" name="" class="form-control" id="nip" placeholder="NIP" [(ngModel)]="modelPerson.nip">
+
+<label for="adressCity">miasto</label>
+<input type="text" name="" class="form-control" id="adressCity" placeholder="miasto" required [(ngModel)]="modelPerson.adressCity">
+
+<label for="adressCityCode">kod pocztowy</label>
+<input type="text" name="" class="form-control" id="adressCityCode" placeholder="kod pocztowy" required [(ngModel)]="modelPerson.adressCityCode">
+
+<label for="adressStreet">ulica</label>
+<input type="text" name="" class="form-control" id="personName" placeholder="ulica" required [(ngModel)]="modelPerson.adressStreet">
+
+<label for="persNumber">numer domu</label>
+<input type="text" name="" class="form-control" id="adressNumber" placeholder="dom" required [(ngModel)]="modelPerson.adressNumber">
+
+ <label for="itemName">nazwa Produktu</label>
+
+    <input type="text" class="form-control" id="itemName" [(ngModel)]="searchItem" (click)="showResults('', '')">
+     <ul *ngIf="searchItem && resultsShow">
+      <li *ngFor="let item of items | filter:searchItem" (click)="showResults(item.name, item)">{{item.name}}</li>
+    </ul>
+
+
+    <!-- <button (click) = "add(person, 'dsdsd')" >dodaj</button> -->

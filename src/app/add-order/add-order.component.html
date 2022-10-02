@@ -1,28 +1,15 @@
 <div class="form">
   <label for="type">wybierz typ zlecenia: </label>
-  <select name="" id="type">
-    <option *ngFor="let type of types" value="{{type}}" >{{type}}</option>
+  <select [(ngModel)]="chosenType">
+    <option *ngFor="let type of types" [value]="type">{{type}}</option>
   </select>
 
-  <label for="personName">imie</label>
-  <input type="text" name="" id="personName" placeholder="imie" #name>
+  <div class="person">
+    <p>dodawanie dokumentu {{chosenType}} towaru</p>
 
-  <label for="nip">NIP</label>
-  <input type="text" name="" id="nip" placeholder="NIP" #nip>
+  <app-add-pz-document *ngIf="chosenType == 'przyjecie'"> </app-add-pz-document>
 
-  <label for="adressCity">miasto</label>
-  <input type="text" name="" id="adressCity" placeholder="miasto" #city>
-
-  <label for="adressCityCode">kod pocztowy</label>
-  <input type="text" name="" id="adressCityCode" placeholder="kod pocztowy" #code>
-
-  <label for="adressStreet">ulica</label>
-  <input type="text" name="" id="personName" placeholder="ulica" #street>
-
-  <label for="persNumber">numer domu</label>
-  <input type="text" name="" id="adressNumber" placeholder="dom" #number>
-
-  <button (click) = "add(name.value, nip.value, city.value, code.value, street.value, number.value)" >dodaj</button>
+  <app-add-wz-document *ngIf="chosenType == 'wydanie'"></app-add-wz-document>
 
 
-</div>
+

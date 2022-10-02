@@ -9,6 +9,9 @@ import { DocumentsComponent } from './documents/documents.component';
 import { CompanyNameComponent } from './company-name/company-name.component';
 import { FormsModule } from '@angular/forms';
 import { AddOrderComponent } from './add-order/add-order.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AddWzDocumentComponent } from './add-wz-document/add-wz-document.component';
+import { AddPzDocumentComponent } from './add-pz-document/add-pz-document.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { AddOrderComponent } from './add-order/add-order.component';
     StorageComponent,
     DocumentsComponent,
     CompanyNameComponent,
-    AddOrderComponent
+    AddOrderComponent,
+    AddWzDocumentComponent,
+    AddPzDocumentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
