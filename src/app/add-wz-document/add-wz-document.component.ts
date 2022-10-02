@@ -22,25 +22,17 @@ import { Person } from '../person';
 })
 export class AddWzDocumentComponent implements OnInit {
 
-  chosenType = type.WZ;
+  chosenType = type.WZ; //deklaracja typu dokumentu
 
-  resultsShow = false;
+  resultsShow = false; // czy pokzaywac wyniki wyszukiwania produktów
 
-  chosenItem: Storage = {
-    id: 1,
-    name: '',
-    netPriceIn: 0,
-    vat: 0,
-    quantity: 0,
-    profit: 0,
-    position: ''
-  }
+  quantity: number = 0; // wybrana ilosc produktu
 
-  quantity: number = 0;
+  chosenItems: Storage[] = [] // przechwoanie wybranych produktów
 
-  chosenItems: Storage[] = []
+  searchItem = ''; //nazwa wyszukiwanego produktu
 
-  searchItem = '';
+  newItems: Storage[] = [] //przechwoanie produktów do aktualizacji po wykonaniu dodania dokumentu
 
   modelPerson: Person = {
     id: 1,
@@ -50,6 +42,16 @@ export class AddWzDocumentComponent implements OnInit {
     adressCityCode: '',
     adressStreet: '',
     adressNumber: '',
+  }
+
+  chosenItem: Storage = {
+    id: 1,
+    name: '',
+    netPriceIn: 0,
+    vat: 0,
+    quantity: 0,
+    profit: 0,
+    position: ''
   }
 
 
@@ -96,8 +98,10 @@ export class AddWzDocumentComponent implements OnInit {
 
     newDocument() {
       this.documentService.addDocument(this.modelDocument)
-      console.log(this.modelDocument)
-
+      for(let i = 0; i < this.newItems.length; i++){
+        this.storageService.changeQuantity(this.newItems[i]);
+        console.log(this.newItems[i])
+      }
     }
 
     ////////////////////////////
@@ -110,14 +114,20 @@ export class AddWzDocumentComponent implements OnInit {
     showResults(name: string, item:Storage): void {
       this.resultsShow = !this.resultsShow;
       this.searchItem = name;
-      this.chosenItem = item;
+      this.chosenItem = {...item};
     }
 
     addItemToDocument(chosenItem: Storage):void {
-      chosenItem.quantity = this.quantity
-      this.chosenItems.push(chosenItem)
-    }
+      if(0<this.quantity && this.quantity<=chosenItem.quantity){
+      this.items.find(i => i.id === chosenItem.id)!.quantity -= this.quantity;
 
+      chosenItem.quantity = this.quantity;
+      this.chosenItems.push(chosenItem);
+      this.searchItem = '';
+      }
+
+
+    }
 
 
 }

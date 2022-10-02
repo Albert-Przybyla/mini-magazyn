@@ -2,7 +2,7 @@ import { Storage } from "./storage";
 import { Place } from "./place";
 
 export let storages: Storage[] = [
-  {id: 5894,
+  {id: 0,
   name: "felga",
   netPriceIn: 700,
   vat: 23,
@@ -10,11 +10,11 @@ export let storages: Storage[] = [
   profit: 20,
   position: "regał 2"
   },
-  {id: 6734,
+  {id: 1,
     name: "opona",
     netPriceIn: 300,
     vat: 23,
-    quantity: 4,
+    quantity: 8,
     profit: 20,
     position: "regał 2"
     }

@@ -64,7 +64,7 @@
 
 
   <div class="form-group" *ngIf="searchItem && !resultsShow">
-    <label for="ilosc">ilosc od 1 do {{chosenItem.quantity}}</label>
+    <label for="ilosc">ilosc od 1 do {{chosenItem.quantity}} </label>
     <input type="number" name="quantity" class="form-control" id="ilosc" min="1" max="{{chosenItem.quantity}}" [(ngModel)]="quantity">
   </div>
   <button class="btn btn-success" (click)="addItemToDocument(chosenItem)"> add </button>
@@ -78,5 +78,3 @@
 
   </form>
 
-
-    <!-- <button (click) = "add(person, 'dsdsd')" >dodaj</button> -->

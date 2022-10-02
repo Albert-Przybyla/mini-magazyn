@@ -13,9 +13,10 @@ export class StorageService {
 
   getStorage(): Observable<Storage[]> {
     const Storages = of(storages);
-    console.log("lalal")
     return Storages;
-
 }
 
+  changeQuantity(newItem: Storage){
+    storages.find(i =>i.id === newItem.id)!.quantity = newItem.quantity;
+  }
 }
