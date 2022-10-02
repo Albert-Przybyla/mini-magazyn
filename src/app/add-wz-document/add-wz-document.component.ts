@@ -92,7 +92,7 @@ export class AddWzDocumentComponent implements OnInit {
     }
 
     genDocumentNumber(): string{
-      const number:string = 'WZ/'+this.getCurrentData();
+      const number:string = 'WZ/'+this.getCurrentData()+"/";
       return number;
     }
 

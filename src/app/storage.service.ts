@@ -17,6 +17,10 @@ export class StorageService {
 }
 
   changeQuantity(newItem: Storage){
-    storages.find(i =>i.id === newItem.id)!.quantity = newItem.quantity;
+    if(storages.find(i =>i.id === newItem.id)!){
+    storages.find(i =>i.id === newItem.id)!.quantity = newItem.quantity
+    }else{
+      storages.push(newItem);
+    }
   }
 }

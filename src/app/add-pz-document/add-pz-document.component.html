@@ -1,1 +1,103 @@
-<p>add-pz-document works!</p>
+<form #documentForm="ngForm" name="form">
+  <div class="form-group">
+  <label for="personName">nazwa</label>
+  <input type="text" name="name" class="form-control" id="personName" placeholder="nazwa" required [(ngModel)]="modelPerson.name"  #name="ngModel">
+  <div [hidden]="name.valid || name.pristine"
+       class="alert alert-danger">
+    nazwa jest wymagana
+  </div>
+  </div>
+  <div class="form-group">
+  <label for="nip">NIP</label>
+  <input type="text" name="nip" class="form-control" id="nip" placeholder="NIP" [(ngModel)]="modelPerson.nip" >
+  </div>
+  <div class="form-group">
+  <label for="adressCity">miasto</label>
+  <input type="text" name="adressCity" class="form-control" id="adressCity" placeholder="miasto" required [(ngModel)]="modelPerson.adressCity" #adressCity="ngModel">
+  <div [hidden]="adressCity.valid || adressCity.pristine"
+       class="alert alert-danger">
+    miejscowosc jest wymagana
+  </div>
+  </div>
+  <div class="form-group">
+  <label for="adressCityCode">kod pocztowy</label>
+  <input type="text" name="adressCityCode" class="form-control" id="adressCityCode" placeholder="kod pocztowy" required [(ngModel)]="modelPerson.adressCityCode" #adressCityCode="ngModel">
+  <div [hidden]="adressCityCode.valid || adressCityCode.pristine"
+       class="alert alert-danger">
+    kod pocztowy jest wymagany
+  </div>
+  </div>
+  <div class="form-group">
+  <label for="adressStreet">ulica</label>
+  <input type="text" name="adressStreet" class="form-control" id="personName" placeholder="ulica" required [(ngModel)]="modelPerson.adressStreet" #adressCityStreet="ngModel">
+  <div [hidden]="adressCityStreet.valid || adressCityStreet.pristine"
+       class="alert alert-danger">
+    ulica jest wymagana
+  </div>
+  </div>
+  <div class="form-group">
+  <label for="adressNumber">numer domu</label>
+  <input type="text" name="adressNumber" class="form-control" id="adressNumber" placeholder="dom" required [(ngModel)]="modelPerson.adressNumber"#adressCityNumber="ngModel">
+  <div [hidden]="adressCityNumber.valid || adressCityNumber.pristine"
+       class="alert alert-danger">
+    numer domu jest wymagany
+  </div>
+  </div>
+   <label for="itemName">nazwa Produktu</label>
+
+
+
+    <div class="form-group">
+      <input type="text" name="product" class="form-control" id="itemName" [(ngModel)]="searchItem" (click)="showResultsFromInput('')">
+
+
+      <ul *ngIf="searchItem && resultsShow">
+        <li *ngFor="let item of items | filter:searchItem" (click)="showResults(item.name, item)">{{item.name}}</li>
+      </ul>
+
+
+    </div>
+
+    <div *ngIf="searchItem">
+
+      <div class="form-group">
+        <label for="id">id produktu: </label>
+        <input type="number" name="id" class="form-control" id="id" [(ngModel)]="chosenItem.id">
+      </div>
+      <div class="form-group">
+        <label for="netPriceIn">cena netto</label>
+        <input type="number" name="netPriceIn" class="form-control" id="netPriceIn" [(ngModel)]="chosenItem.netPriceIn">
+      </div>
+
+      <div class="form-group">
+        <label for="vat">podatek vat w %: </label>
+        <input type="number" name="vat" class="form-control" id="vat" [(ngModel)]="chosenItem.vat">
+      </div>
+
+      <div class="form-group">
+        <label for="profit">zarobek w %: </label>
+        <input type="number" name="profit" class="form-control" id="profit" [(ngModel)]="chosenItem.profit">
+      </div>
+
+
+    <div class="form-group">
+      <label for="ilosc">ilosc: </label>
+      <input type="number" name="quantity" class="form-control" id="ilosc" min="1" [(ngModel)]="quantity">
+    </div>
+
+    <button class="btn btn-success" (click)="addItemToDocument(chosenItem)"> add </button>
+
+    </div>
+
+
+
+
+    <ul>
+      <li *ngFor="let item of chosenItems" async> {{item.name}}, ilosc {{item.quantity}}</li>
+    </ul>
+
+
+
+    <button type="submit" class="btn btn-success" (click)="newDocument()" [disabled]="!documentForm.form.valid">Submit</button>
+
+    </form>

@@ -1,3 +1,6 @@
 <ul>
-  <li *ngFor="let document of documents async">{{document.number}} {{document.data}}</li>
+  <li *ngFor="let document of documents async">{{document.number}} {{document.data}}
+
+    <button (click)="generatePdf(document)">drukuj</button>
+  </li>
 </ul>
