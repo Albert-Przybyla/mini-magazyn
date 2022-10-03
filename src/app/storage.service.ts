@@ -9,20 +9,26 @@ import { storages } from './storages';
 })
 export class StorageService {
 
+  storageCopy: Storage[] = {...storages}
+
   constructor() { }
 
   getStorage(): Observable<Storage[]> {
-    const Storages = of(storages);
-    return Storages;
+    const Storage = of(storages);
+    return Storage;
 }
 
-  changeQuantity(newItem: Storage){
-    console.log("dasdas");
-    console.log(storages.find(i =>i.id === newItem.id));
-    if(storages.find(i =>i.id === newItem.id)){
-    storages.find(i =>i.id === newItem.id)!.quantity = newItem.quantity
-    }else{
-      storages.push(newItem);
-    }
+  getStorageCopy(): Observable<Storage[]> {
+  const Storage = of(this.storageCopy);
+  return Storage;
+}
+
+  // changeQuantity(newItem: Storage){
+  //   console.log(newItem);
+  //   storages.find(i =>i.id === newItem.id)!.quantity = newItem.quantity;
+  // }
+
+  addNewItem(newItem: Storage){
+    storages.push(newItem);
   }
 }

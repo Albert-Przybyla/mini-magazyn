@@ -1,6 +1,31 @@
-<ul>
+<!-- <ul>
   <li *ngFor="let document of documents async">{{document.number}} {{document.data}}
 
     <button (click)="generatePdf(document)">drukuj</button>
   </li>
-</ul>
+</ul> -->
+<table>
+  <tr>
+    <th> numer </th> <th> data </th> <th> produkty</th> <th> wartosc </th> <th> Drukuj </th>
+  </tr>
+  <tr *ngFor="let document of documents async">
+    <td>
+    {{document.number}}
+    </td>
+    <td>
+    {{document.data}}
+    </td>
+    <td>
+      <ul>
+        <li *ngFor="let item of document.products">
+          {{item.netPrice}}, Vat: {{item.vat}}%
+        </li>
+      </ul>
+    </td>
+    <td>
+      {{document.netPrice}} z vat: {{document.grossPrice}}
+    </td>
+    <button (click)="generatePdf(document)">drukuj</button>
+  </tr>
+
+</table>

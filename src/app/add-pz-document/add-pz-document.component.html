@@ -66,7 +66,7 @@
       </div>
       <div class="form-group">
         <label for="netPriceIn">cena netto</label>
-        <input type="number" name="netPriceIn" class="form-control" id="netPriceIn" [(ngModel)]="chosenItem.netPriceIn">
+        <input type="number" name="netPriceIn" class="form-control" id="netPriceIn" [(ngModel)]="chosenItem.netPrice">
       </div>
 
       <div class="form-group">
@@ -98,6 +98,6 @@
 
 
 
-    <button type="submit" class="btn btn-success" (click)="newDocument()" [disabled]="!documentForm.form.valid">Submit</button>
+    <button type="submit" class="btn btn-success" (click)="newDocument(chosenItems)" [disabled]="!documentForm.form.valid">Submit</button>
 
     </form>

@@ -1,7 +1,6 @@
 import { documents } from './../documents';
 import { documentService } from './../document.service';
 import { Component, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
 
 
 import { Storage } from '../storage';
@@ -22,17 +21,30 @@ import { Person } from '../person';
 })
 export class AddWzDocumentComponent implements OnInit {
 
+  constructor(
+    private storageService: StorageService,
+    private documentService: documentService
+  ) { }
+
+  ngOnInit(): void {
+    this.getStorage()
+  }
+
   chosenType = type.WZ; //deklaracja typu dokumentu
 
   resultsShow = false; // czy pokzaywac wyniki wyszukiwania produktów
 
   quantity: number = 0; // wybrana ilosc produktu
 
-  chosenItems: Storage[] = [] // przechwoanie wybranych produktów
+  chosenItems: Storage[] = []; // przechwoanie wybranych produktów
 
   searchItem = ''; //nazwa wyszukiwanego produktu
 
-  newItems: Storage[] = [] //przechwoanie produktów do aktualizacji po wykonaniu dodania dokumentu
+  items: Storage[] = [];
+
+  getStorage(): void {
+    this.storageService.getStorage().subscribe(Storage => this.items = Storage);
+  }
 
   modelPerson: Person = {
     id: 1,
@@ -47,64 +59,24 @@ export class AddWzDocumentComponent implements OnInit {
   chosenItem: Storage = {
     id: 1,
     name: '',
-    netPriceIn: 0,
+    netPrice: 0,
     vat: 0,
     quantity: 0,
     profit: 0,
-    position: ''
   }
 
 
   modelDocument:document = {
     id: 0,
-    number: this.genDocumentNumber(),
+    number: "",
     type: this.chosenType,
-    data: this.getCurrentData(),
+    data: "",
     products: this.chosenItems,
     netPrice: 0,
     grossPrice: 0,
     client: this.modelPerson
   }
 
-  constructor(
-    private storageService: StorageService,
-    private documentService: documentService
-  ) { }
-
-    // tablice do wyszukiwania
-
-    items: Storage[] = [];
-
-    getStorage(): void {
-      this.storageService.getStorage().subscribe(Storage => this.items = Storage);
-    }
-
-
-  ngOnInit(): void {
-    this.getStorage()
-  }
-
-
-    /// number of document /////
-
-    getCurrentData():string | null{
-      return (new DatePipe('en-US').transform(new Date(), 'YYYY/MM/dd'))
-    }
-
-    genDocumentNumber(): string{
-      const number:string = 'WZ/'+this.getCurrentData()+"/";
-      return number;
-    }
-
-    newDocument() {
-      this.documentService.addDocument(this.modelDocument)
-      for(let i = 0; i < this.newItems.length; i++){
-        this.storageService.changeQuantity(this.newItems[i]);
-        console.log(this.newItems[i])
-      }
-    }
-
-    ////////////////////////////
 
     showResultsFromInput(name: string){
       this.resultsShow = !this.resultsShow;
@@ -128,6 +100,18 @@ export class AddWzDocumentComponent implements OnInit {
 
 
     }
+
+
+        /// number of document /////
+
+        newDocument() {
+          // for(let i = 0; i < this.newItems.length; i++){
+          //   this.storageService.changeQuantity(this.newItems[i]);
+          // }
+          this.documentService.addDocument(this.modelDocument)
+        }
+
+        ////////////////////////////
 
 
 }

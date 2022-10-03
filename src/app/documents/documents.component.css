@@ -1,0 +1,12 @@
+table{
+  width: 80vw;
+}
+
+tr{
+  height: 6vh;
+}
+
+td, th{
+  width: 20%;
+  text-align: center;
+}
