@@ -21,7 +21,20 @@
 </div>
 
 <div class="storage">
-  <ul>
-    <li *ngFor="let item of items">{{item.name}} {{item.id}} {{item.quantity}} {{item.netPrice + (item.netPrice * 23 /100)}}</li>
-  </ul>
+  <table>
+    <tr>
+      <th>nazwa produktu</th>
+      <th>id produktu</th>
+      <th>ilosc na magazynie</th>
+      <th>cena netto</th>
+      <th>cena brutto</th>
+    </tr>
+    <tr *ngFor="let item of items">
+      <td>{{item.name}}</td>
+      <td>{{item.id}}</td>
+      <td>{{item.quantity}}</td>
+      <td>{{item.netPrice}}</td>
+      <td>{{item.netPrice + (item.netPrice * 23 /100)}}</td>
+    </tr>
+  </table>
 </div>
