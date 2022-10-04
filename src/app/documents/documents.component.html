@@ -6,7 +6,7 @@
 </ul> -->
 <table>
   <tr>
-    <th> numer </th> <th> data </th> <th> produkty</th> <th> wartosc </th> <th> Drukuj </th>
+    <th> numer </th> <th> data </th> <th>dane osoby</th> <th> produkty</th> <th> wartosc </th>
   </tr>
   <tr *ngFor="let document of documents async">
     <td>
@@ -17,15 +17,22 @@
     </td>
     <td>
       <ul>
+      <li>{{document.client.name}} </li>
+      <li>{{document.client.nip}}</li>
+      <li>{{document.client.adressCity}}, {{document.client.adressCityCode}}</li>
+      <li>{{document.client.adressStreet}}, {{document.client.adressNumber}}</li>
+    </ul>
+    </td>
+    <td>
+      <ul>
         <li *ngFor="let item of document.products">
-          {{item.netPrice}}, Vat: {{item.vat}}%
+          {{item.netPrice}}, vat: {{item.vat}}%, ilosc: {{item.quantity}}
         </li>
       </ul>
     </td>
     <td>
-      {{document.netPrice}} z vat: {{document.grossPrice}}
+      netto: {{document.netPrice}}, btutto: {{document.grossPrice}}
     </td>
-    <button (click)="generatePdf(document)">drukuj</button>
   </tr>
 
 </table>
