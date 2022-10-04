@@ -32,7 +32,7 @@ export class AddWzDocumentComponent implements OnInit {
 
   chosenType = type.WZ; //deklaracja typu dokumentu
 
-  resultsShow = false; // czy pokzaywac wyniki wyszukiwania produktów
+  resultsShow = true; // czy pokzaywac wyniki wyszukiwania produktów
 
   quantity: number = 0; // wybrana ilosc produktu
 
@@ -41,6 +41,9 @@ export class AddWzDocumentComponent implements OnInit {
   searchItem = ''; //nazwa wyszukiwanego produktu
 
   items: Storage[] = [];
+
+  grossPrice = 0;
+  netPrice = 0;
 
   getStorage(): void {
     this.storageService.getStorage().subscribe(Storage => this.items = Storage);
@@ -78,24 +81,26 @@ export class AddWzDocumentComponent implements OnInit {
   }
 
 
-    showResultsFromInput(name: string){
+    showResults(){
       this.resultsShow = !this.resultsShow;
-      this.searchItem = name;
     }
 
-    showResults(name: string, item:Storage): void {
+    nextStep(item:Storage): void {
       this.resultsShow = !this.resultsShow;
-      this.searchItem = name;
+      this.searchItem = item.name;
       this.chosenItem = {...item};
     }
 
     addItemToDocument(chosenItem: Storage):void {
       if(0<this.quantity && this.quantity<=chosenItem.quantity){
       this.items.find(i => i.id === chosenItem.id)!.quantity -= this.quantity;
-
       chosenItem.quantity = this.quantity;
       this.chosenItems.push(chosenItem);
+      this.resultsShow = true;
       this.searchItem = '';
+      const priceAll = chosenItem.netPrice * chosenItem.quantity;
+      this.modelDocument.netPrice += priceAll
+      this.modelDocument.grossPrice += priceAll + (priceAll * chosenItem.vat / 100)
       }
 
 
@@ -105,9 +110,6 @@ export class AddWzDocumentComponent implements OnInit {
         /// number of document /////
 
         newDocument() {
-          // for(let i = 0; i < this.newItems.length; i++){
-          //   this.storageService.changeQuantity(this.newItems[i]);
-          // }
           this.documentService.addDocument(this.modelDocument)
         }
 

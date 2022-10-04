@@ -1,4 +1,4 @@
-<form #documentForm="ngForm" name="form">
+<form #documentForm="ngForm" name="form" class="form">
   <div class="form-group">
   <label for="personName">nazwa</label>
   <input type="text" name="name" class="form-control" id="personName" placeholder="nazwa" required [(ngModel)]="modelPerson.name"  #name="ngModel">
@@ -48,7 +48,7 @@
 
 
     <div class="form-group">
-      <input type="text" name="product" class="form-control" id="itemName" [(ngModel)]="searchItem" (click)="showResultsFromInput('')">
+      <input type="text" name="product" class="form-control" id="itemName" [(ngModel)]="searchItem" autocomplete="off">
 
 
       <ul *ngIf="searchItem && resultsShow">
@@ -90,11 +90,22 @@
     </div>
 
 
-
-
-    <ul>
-      <li *ngFor="let item of chosenItems"> {{item.name}}, ilosc {{item.quantity}}</li>
-    </ul>
+    <table>
+      <tr>
+        <th>nazwa produktu</th><th>ilosc</th><th>cena netto</th><th>cena brutto</th>
+      </tr>
+      <tr *ngFor="let item of chosenItems" async>
+         <td>{{item.name}}</td>
+         <td>{{item.quantity}}</td>
+         <td>{{item.quantity * item.netPrice}}</td>
+         <td>{{item.quantity * (item.netPrice + (item.vat * item.netPrice / 100))}}</td>
+      </tr>
+      <tr>
+        <td></td><td>razem: </td>
+        <td>{{modelDocument.netPrice}}</td>
+        <td>{{modelDocument.grossPrice}}</td>
+      </tr>
+    </table>
 
 
 

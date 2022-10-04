@@ -33,11 +33,12 @@
 
     chosenType = type.PZ; //deklaracja typu dokumentu
 
-    resultsShow = false; // czy pokzaywac wyniki wyszukiwania produktów
+    resultsShow = true; // czy pokzaywac wyniki wyszukiwania produktów
 
     quantity: number = 0; // wybrana ilosc produktu
 
     chosenItems: Storage[] = [] // przechwoanie wybranych produktów
+    suportforChosenItems: boolean[] = [] // inforamcje o chosenItems
 
     searchItem = ''; //nazwa wyszukiwanego produktu
 
@@ -104,21 +105,24 @@
           }
         chosenItem.quantity = this.quantity;
         this.chosenItems.push({...chosenItem});
-
+        this.suportforChosenItems.push(this.inStorage);
         this.searchItem = '';
         this.inStorage = false;
+        this.resultsShow = true;
+        const priceAll = chosenItem.netPrice * chosenItem.quantity;
+        this.modelDocument.netPrice += priceAll
+        this.modelDocument.grossPrice += priceAll + (priceAll * chosenItem.vat / 100)
         }
       }
 
 
       newDocument(chosenItems : Storage[]) {
-        console.log("co jest kurwa")
         console.log(chosenItems)
-        // for(let i = 0; i < this.newItems.length; i++){
-        //   console.log("co jest kurwa 2")
-        //   console.log(this.chosenItems[i]);
-        //   // this.storageService.changeQuantity(this.newItems[i]);
-        // }
+        for(let i = 0; i < chosenItems.length; i++){
+          if(this.suportforChosenItems[i]===false){
+            this.storageService.addNewItem(chosenItems[i])
+          }
+        }
         this.documentService.addDocument(this.modelDocument)
       }
 

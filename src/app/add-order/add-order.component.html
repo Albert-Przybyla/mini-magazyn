@@ -1,15 +1,15 @@
 <div class="form">
+  <div class="form-group">
   <label for="type">wybierz typ zlecenia: </label>
-  <select [(ngModel)]="chosenType">
+  <select [(ngModel)]="chosenType" class="form-control">
     <option *ngFor="let type of types" [value]="type">{{type}}</option>
   </select>
+</div>
 
-  <div class="person">
-    <p>dodawanie dokumentu {{chosenType}} towaru</p>
 
   <app-add-pz-document *ngIf="chosenType == 'przyjecie'"> </app-add-pz-document>
 
   <app-add-wz-document *ngIf="chosenType == 'wydanie'"></app-add-wz-document>
 
-
+</div>
 

@@ -1,11 +1,4 @@
-
-<!-- <div class="form-group">
-  <label for="power">nazwa towaru</label>
-  <select class="form-control" id="power" required>
-    <option *ngFor="let item of items" [value]="item">{{item.name}}, ilosc na magazynie {{item.quantity}}</option>
-  </select>
-</div> -->
-<form #documentForm="ngForm" name="form">
+<form #documentForm="ngForm" name="form" class="form">
 <div class="form-group">
 <label for="personName">nazwa</label>
 <input type="text" name="name" class="form-control" id="personName" placeholder="nazwa" required [(ngModel)]="modelPerson.name"  #name="ngModel">
@@ -56,9 +49,9 @@
 
 
   <div class="form-group">
-    <input type="text" name="product" class="form-control" id="itemName" [(ngModel)]="searchItem" (click)="showResultsFromInput('')">
+    <input type="text" name="product" class="form-control" id="itemName" [(ngModel)]="searchItem" autocomplete="off">
      <ul *ngIf="searchItem && resultsShow">
-      <li *ngFor="let item of items | filter:searchItem" (click)="showResults(item.name, item)">{{item.name}}</li>
+      <li *ngFor="let item of items | filter:searchItem" (click)="nextStep(item)">{{item.name}}</li>
     </ul>
   </div>
 
@@ -66,12 +59,26 @@
   <div class="form-group" *ngIf="searchItem && !resultsShow">
     <label for="ilosc">ilosc od 1 do {{chosenItem.quantity}} </label>
     <input type="number" name="quantity" class="form-control" id="ilosc" min="1" max="{{chosenItem.quantity}}" [(ngModel)]="quantity">
+    <button class="btn btn-success" (click)="addItemToDocument(chosenItem)"> add </button>
   </div>
-  <button class="btn btn-success" (click)="addItemToDocument(chosenItem)"> add </button>
+
   </div>
-  <ul>
-    <li *ngFor="let item of chosenItems" async> {{item.name}}, ilosc {{item.quantity}}</li>
-  </ul>
+  <table>
+    <tr>
+      <th>nazwa produktu</th><th>ilosc</th><th>cena netto</th><th>cena brutto</th>
+    </tr>
+    <tr *ngFor="let item of chosenItems" async>
+       <td>{{item.name}}</td>
+       <td>{{item.quantity}}</td>
+       <td>{{item.quantity * item.netPrice}}</td>
+       <td>{{item.quantity * (item.netPrice + (item.vat * item.netPrice / 100))}}</td>
+    </tr>
+    <tr>
+      <td></td><td>razem: </td>
+      <td>{{modelDocument.netPrice}}</td>
+      <td>{{modelDocument.grossPrice}}</td>
+    </tr>
+  </table>
 
 
   <button type="submit" class="btn btn-success" (click)="newDocument()" [disabled]="!documentForm.form.valid">Submit</button>
